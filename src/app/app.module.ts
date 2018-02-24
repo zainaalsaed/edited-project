@@ -3,7 +3,7 @@ import {IonicApp, IonicModule} from "ionic-angular";
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {IonicStorageModule} from '@ionic/storage';
-
+import { FingerprintAIO} from '@ionic-native/fingerprint-aio'
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from '@ionic-native/keyboard';
@@ -55,7 +55,8 @@ const firebaseAuth = {
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    FingerprintAIO
   ],
   imports: [
     BrowserModule,

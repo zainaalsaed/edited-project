@@ -1,15 +1,15 @@
 <!-- -->
-<ion-content class="auth-page">
+
+
+<ion-content padding class="animated fadeIn login auth-page">
   <div class="login-content">
 
     <!-- Logo -->
-    <div padding text-center>
+    <div padding-horizontal text-center class="animated fadeInDown">
       <div class="logo"></div>
-      <h2 ion-text class="text-primary">
-        Registeration
-      </h2>
+      
     </div>
-
+   
     <!-- Login form -->
     <form class="list-form">
       <ion-item>
@@ -46,42 +46,36 @@
           </ion-item>
 
 
-          <div class = "list">
-              <ion-label floating> Your state: </ion-label>
-              <label class = "item item-radio">
-                 <input type = "radio" name = "group1" />
-                 <div class = "item-content">
-                   I have a driving lisence
-                 </div>
-                 <i class = "radio-icon ion-checkmark"></i>
-              </label>
-           
-              <label class = "item item-radio">
-                 <input type = "radio" name = "group1" />
-                 <div class = "item-content">
-                    I'm still learning
-                 </div>
-                 <i class = "radio-icon ion-checkmark"></i>
-              </label>
-           
-              <label class = "item item-radio">
-                 <input type = "radio" name = "group1" />
-                 <div class = "item-content">
-                    Neither
-                 </div>
-                 <i class = "radio-icon ion-checkmark"></i>
-              </label>
-           
-              
-           </div>
-      
-
-     
-     
-      
 
 
 
+
+
+          <ion-list radio-group>
+          <ion-item>
+              <ion-label floating color="primary">
+                <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+                Your State
+              </ion-label>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>I have a driving Lisence</ion-label>
+              <ion-radio checked="true" value="go" ></ion-radio>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label> I'm still learning</ion-label>
+              <ion-radio value="rust"></ion-radio>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>Neither</ion-label>
+              <ion-radio value="python"></ion-radio>
+            </ion-item>
+          
+          </ion-list>
+        
     </form>
 
     <div margin-top>

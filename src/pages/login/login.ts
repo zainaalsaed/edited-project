@@ -2,14 +2,28 @@ import {Component} from "@angular/core";
 import {NavController, AlertController, ToastController, MenuController} from "ionic-angular";
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
-
+import {Platform} from 'ionic-angular';
+import {FingerprintAIO, FingerprintOptions} from '@ionic-native/fingerprint-aio';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
 
-  constructor(public nav: NavController, public forgotCtrl: AlertController, public menu: MenuController, public toastCtrl: ToastController) {
+
+  fingerprintOptions:FingerprintOptions
+  constructor(private fingerprint: FingerprintAIO, private platform:Platform ,public nav: NavController, public forgotCtrl: AlertController, public menu: MenuController, public toastCtrl: ToastController) {
+
+    this.fingerprintOptions={
+
+      clientId: 'fingerprint-demo',
+      clientSecret: 'password',
+    /**
+     * Disable 'use backup' option. Only for android (optional)
+     */
+    disableBackup: true
+
+    }
     this.menu.swipeEnable(false);
   }
 
@@ -22,6 +36,25 @@ export class LoginPage {
   login() {
     this.nav.setRoot(HomePage);
   }
+   
+  
+  async showFingerPrintDialog(){
+try{
+  await this.platform.ready();
+  const available= await this.fingerprint.isAvailable();
+  console.log(available);
+  if(available=="OK"){
+
+    const result = await this.fingerprint.show(this.fingerprintOptions);
+console.log(result) 
+  }
+}
+catch(e){
+  console.error(e);
+}
+   }
+
+
 
   forgotPass() {
     let forgot = this.forgotCtrl.create({
