@@ -1,59 +1,58 @@
-import {Component} from "@angular/core";
 import {NavController, AlertController, ToastController, MenuController} from "ionic-angular";
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
-import {Platform} from 'ionic-angular';
-import {FingerprintAIO, FingerprintOptions} from '@ionic-native/fingerprint-aio';
+import { Component ,ViewChild   } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { FirebaseError } from '@firebase/util';
+
+
+import { User } from '@firebase/auth-types';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
+  navCtrl: any;
 
-
-  fingerprintOptions:FingerprintOptions
-  constructor(private fingerprint: FingerprintAIO, private platform:Platform ,public nav: NavController, public forgotCtrl: AlertController, public menu: MenuController, public toastCtrl: ToastController) {
-
-    this.fingerprintOptions={
-
-      clientId: 'fingerprint-demo',
-      clientSecret: 'password',
-    /**
-     * Disable 'use backup' option. Only for android (optional)
-     */
-    disableBackup: true
-
-    }
+  
+  @ViewChild('username') user;
+	@ViewChild('password') password;
+  constructor(private afAuth: AngularFireAuth,private alertCtrl: AlertController,private fire: AngularFireAuth,public nav: NavController, public forgotCtrl: AlertController, public menu: MenuController, public toastCtrl: ToastController) {
     this.menu.swipeEnable(false);
   }
-
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegisterPage');
+  }
+  alert(message: string) {
+    this.alertCtrl.create({
+      title: 'Info!',
+      subTitle: message,
+      buttons: ['OK']
+    }).present();
+  }
   // go to register page
   register() {
     this.nav.setRoot(RegisterPage);
   }
 
   // login and go to home page
-  login() {
-    this.nav.setRoot(HomePage);
-  }
-   
-  
-  async showFingerPrintDialog(){
-try{
-  await this.platform.ready();
-  const available= await this.fingerprint.isAvailable();
-  console.log(available);
-  if(available=="OK"){
+  regEm() {
 
-    const result = await this.fingerprint.show(this.fingerprintOptions);
-console.log(result) 
+    this.fire.auth.signInWithEmailAndPassword(this.user.value , this.password.value)
+    .then( data => {
+      console.log('got some data', this.fire.auth.currentUser);
+      this.alert('Success! You\'re logged in');
+      this.navCtrl.setRoot(HomePage);
+      // user is logged in
+    })
+    .catch( error => {
+      console.log('got an error', error);
+      this.alert(error.message);
+    })
+    console.log('Would sign in with ', this.user.value, this.password.value);
+    
   }
-}
-catch(e){
-  console.error(e);
-}
-   }
-
 
 
   forgotPass() {
@@ -93,5 +92,13 @@ catch(e){
     });
     forgot.present();
   }
-
+  signInWithFacebook() {
+    this.afAuth.auth .signInWithPopup(new firebase.auth.FacebookAuthProvider()) .then(res => console.log(res));
+  }
+  signInWithgoogle() {
+    this.afAuth.auth .signInWithPopup(new firebase.auth.GoogleAuthProvider()) .then(res => console.log(res));
+  }
+  registeruser() {
+    this.nav.setRoot(RegisterPage);
+  }
 }

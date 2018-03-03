@@ -6,7 +6,7 @@
     <div padding-horizontal text-center class="animated fadeInDown">
       <div class="logo"></div>
       <h2 ion-text class="text-primary">
-        
+        <strong>Ionic 3</strong> Start Theme
       </h2>
     </div>
 
@@ -17,7 +17,7 @@
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" #username></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,14 +25,14 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Password
         </ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" #password></ion-input>
       </ion-item>
     </form>
 
     <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>
 
     <div>
-      <button ion-button icon-start block color="dark" tappable (click)="login()">
+      <button ion-button icon-start block color="dark" (click)="regEm()" class="submit-btn">
         <ion-icon name="log-in"></ion-icon>
         SIGN IN
       </button>
@@ -42,7 +42,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-            <button ion-button icon-only block class="btn-facebook">
+            <button ion-button icon-only block class="btn-facebook" (click)="signInWithFacebook()">
               <ion-icon name="logo-facebook"></ion-icon>
             </button>
           </ion-col>
@@ -52,28 +52,19 @@
             </button>
           </ion-col>
           <ion-col col-4>
-            <button ion-button icon-only block class="btn-gplus">
+            <button ion-button icon-only block class="btn-gplus" (click)="signInWithgoogle()">
               <ion-icon name="logo-googleplus"></ion-icon>
-            </button>
-          </ion-col>
-
-          <ion-col col-4>
-            <button ion-button (click)="ShowFingerPrintDialog">
-              <ion-icon name="person"></ion-icon>
             </button>
           </ion-col>
         </ion-row>
       </ion-grid>
-
-
 
     </div>
 
 
     <!-- Other links -->
     <div text-center margin-top>
-      
-      <span ion-text color="secondary" tappable (click)="register()">New here? <strong>Sign up</strong></span>
+      <span ion-text color="secondary" tappable (click)="registeruser()">New here? <strong>Sign up</strong></span>
     </div>
 
   </div>
