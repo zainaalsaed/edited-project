@@ -1,4 +1,4 @@
-import {NavController, AlertController, ToastController, MenuController} from "ionic-angular";
+import {NavController, AlertController, ToastController, MenuController, Nav} from "ionic-angular";
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
 import { Component ,ViewChild   } from '@angular/core';
@@ -13,7 +13,7 @@ import { User } from '@firebase/auth-types';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  navCtrl: any;
+  navCtrl: any=this.nav;
 
   
   @ViewChild('username') user;
@@ -43,7 +43,7 @@ export class LoginPage {
     .then( data => {
       console.log('got some data', this.fire.auth.currentUser);
       this.alert('Success! You\'re logged in');
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.push(HomePage);
       // user is logged in
     })
     .catch( error => {

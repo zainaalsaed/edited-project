@@ -28,6 +28,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {IonicPageModule} from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { NewsPage } from "../pages/news/news";
+import { MyProvider } from '../providers/my/my';
 const firebaseAuth = {
   apiKey: "AIzaSyDaMitUUxNTOo7uWpsRuhDtl4ox7cvR1FA",
   authDomain: "test-project-ca0ec.firebaseapp.com",
@@ -55,7 +57,8 @@ const firebaseAuth = {
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    NewsPage
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ const firebaseAuth = {
     RegisterPage,
     SearchLocationPage,
     TripDetailPage,
-    TripsPage
+    TripsPage,
+    NewsPage
   ],
   providers: [
     StatusBar,
@@ -93,7 +97,8 @@ const firebaseAuth = {
     Keyboard,
     ActivityService,
     TripService,
-    WeatherProvider
+    WeatherProvider,
+    MyProvider
   ]
 })
 
