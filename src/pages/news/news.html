@@ -1,1 +1,47 @@
 
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+   Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="block">
+    <ion-icon name="alert" class="reports" tappable (click)="showLogin()"></ion-icon>
+    <ion-label>Accounts</ion-label>
+  </div>
+
+  <div class="block">
+      <ion-icon name="contacts" class="reports" tappable (click)="showScan()"></ion-icon>
+      <ion-label>Scan your Barcode</ion-label>
+    </div>
+
+  <div class="block">
+    <ion-icon name="clock" class="reports" (click)="openReports()"></ion-icon>
+    <ion-label>وقت الغسيل </ion-label>
+  </div>
+  <div class="block">
+    <ion-icon name="clipboard" class="reports" (click)="openRest()"></ion-icon>
+    <ion-label>تعليمات لراحتك</ion-label>
+  </div>
+  <div class="block">
+    <ion-icon name="ios-flower" class="medkit" (click)="openClean()"></ion-icon>
+    <ion-label>نظافة موقع الغسيل</ion-label>
+  </div>
+  <div class="block">
+    <ion-icon name="logo-apple" class="reports" (click)="openFood()"></ion-icon>
+    <ion-label>غذائي سلامتي</ion-label>
+  </div>
+  <div class="block">
+    <ion-icon name="bicycle" class="reports" (click)="openSport()"></ion-icon>
+    <ion-label>الرياضة</ion-label>
+  </div>
+
+  <div class="block">
+      <ion-icon name="logo-buffer" class="reports" (click)="openResults()"></ion-icon>
+      <ion-label>النتائج</ion-label>
+     
+    </div>
+</ion-content>

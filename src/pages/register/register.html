@@ -1,6 +1,21 @@
 <!-- -->
 
 
+
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        Sign Up
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button icon-left (click)="prev()"><ion-icon name="arrow-back"></ion-icon> Prev</button>
+      </ion-buttons>
+      <ion-buttons end>
+        <button ion-button icon-right (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
 <ion-content padding class="animated fadeIn login auth-page">
   <div class="login-content">
 
@@ -10,46 +25,38 @@
       
     </div>
    
+
+   
+    <ion-list>
+
+  <ion-item tappable>
+    <ion-label stacked>Your Name</ion-label>
+    <ion-input type="text" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item tappable>
+    <ion-label floating>ID Number</ion-label>
+    <ion-input type="number" [(ngModel)]="identifierNum"></ion-input>
+  </ion-item>
+
+  
+  <ion-item tappable>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="email" #username [(ngModel)]="mail"></ion-input>
+  </ion-item>
+   
+   <ion-item tappable>
+     <ion-label floating>
+      <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+    Password
+  </ion-label>
+    <ion-input tappable type="password" #password [(ngModel)]="pas"></ion-input>
+  </ion-item>
+        
+   
+</ion-list>
+   
     <!-- Login form -->
-    <form class="list-form">
-      <ion-item>
-        <ion-label floating>
-          <ion-icon name="person" item-start class="text-primary"></ion-icon>
-          Full Name
-        </ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label color="secondary" floating >
-              <ion-icon name="card" item-start class="text-primary"></ion-icon>
-            ID Number
-          </ion-label>
-          <ion-input type="number" ></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label floating>
-              <ion-icon name="mail" item-start class="text-primary"></ion-icon>
-              Email
-            </ion-label>
-            <ion-input type="email" #username></ion-input>
-          </ion-item>
-
-     
-        <ion-item>
-            <ion-label floating>
-              <ion-icon name="lock" item-start class="text-primary"></ion-icon>
-              Password
-            </ion-label>
-            <ion-input type="password" #password></ion-input>
-          </ion-item>
-
-
-
-
-
-
+    
 
           <ion-list radio-group>
          
@@ -71,12 +78,19 @@
           
           </ion-list>
         
-    </form>
-
+   <div text-center margin-top>
+       
+        
+            <button ion-button block color="dark" tappable (click)="newUser(); createPerson(name,identifierNum,mail,pas)">
+                 <ion-icon name="ios-add-circle"></ion-icon>
+                  Sign Up
+                 </button>
+               
+      <span ion-text color="primary" tappable (click)="login()">I have an account</span>
+    </div>
+ 
     <div margin-top>
-      <button ion-button block color="dark" tappable (click)="registerUser()">
-        SIGN UP
-      </button>
+      
 
       <p text-center ion-text color="secondary">Or Sign Up with:</p>
 
@@ -102,9 +116,7 @@
     </div>
 
     <!-- Other links -->
-    <div text-center margin-top>
-      <span ion-text color="primary" tappable (click)="login()">I have an account</span>
-    </div>
+    
 
   </div>
 </ion-content>
