@@ -49,14 +49,22 @@ export class RegisterPage {
   }
 
 
+<<<<<<< HEAD
  /* next(){
+=======
+  next(){
+>>>>>>> 70be5d627a8988682cf6393f2ecb4cd0f6cc2906
     this.signupSlider.slideNext();
 }
 
 prev(){
     this.signupSlider.slidePrev();
 }
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> 70be5d627a8988682cf6393f2ecb4cd0f6cc2906
 
   createPerson(name,identifierNum,mail,pas){
     this.peopleList.push({
