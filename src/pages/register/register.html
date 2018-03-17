@@ -7,16 +7,7 @@
       <ion-title>
         Sign Up
       </ion-title>
-<<<<<<< HEAD
     
-=======
-      <ion-buttons start>
-        <button ion-button icon-left (click)="prev()"><ion-icon name="arrow-back"></ion-icon> Prev</button>
-      </ion-buttons>
-      <ion-buttons end>
-        <button ion-button icon-right (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></button>
-      </ion-buttons>
->>>>>>> 70be5d627a8988682cf6393f2ecb4cd0f6cc2906
     </ion-navbar>
 </ion-header>
 
@@ -62,7 +53,7 @@
     <!-- Login form -->
     
 
-          <ion-list radio-group>
+         <!-- <ion-list radio-group>
          
           
             <ion-item>
@@ -81,11 +72,27 @@
             </ion-item>
           
           </ion-list>
-        
+        -->
+
+        <ion-card class="full-width" no-margin margin-bottom>
+          <ion-card-content no-padding>
+      
+            <ion-item>
+              <ion-label class="text-1x bold">Status?</ion-label>
+              <ion-select [(ngModel)]="status" (ionChange)="getStatus(status)">
+              <ion-option [value]="yes">I have a driving Lisence</ion-option>
+              <ion-option [value]="no">I don't have a driving Lisence</ion-option>
+             
+            
+            </ion-select>
+            </ion-item>
+      
+          </ion-card-content>
+        </ion-card>
    <div text-center margin-top>
        
         
-            <button ion-button block color="dark" tappable (click)="newUser(); createPerson(name,identifierNum,mail,pas)">
+            <button ion-button block color="dark" tappable (click)="newUser(); createPerson(name,identifierNum,mail,pas,status)">
                  <ion-icon name="ios-add-circle"></ion-icon>
                   Sign Up
                  </button>

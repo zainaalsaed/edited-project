@@ -29,6 +29,9 @@ export class RegisterPage {
   @ViewChild('username') user;
   @ViewChild('password') password;
   
+
+
+  
   constructor(public formBuilder: FormBuilder, public db: AngularFireDatabase, public nav: NavController,private afAuth: AngularFireAuth, private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
    /* fire.auth.onAuthStateChanged(function(user){
       if(!user){
@@ -49,29 +52,15 @@ export class RegisterPage {
   }
 
 
-<<<<<<< HEAD
- /* next(){
-=======
-  next(){
->>>>>>> 70be5d627a8988682cf6393f2ecb4cd0f6cc2906
-    this.signupSlider.slideNext();
-}
+ 
 
-prev(){
-    this.signupSlider.slidePrev();
-}
-<<<<<<< HEAD
-*/
-=======
-
->>>>>>> 70be5d627a8988682cf6393f2ecb4cd0f6cc2906
-
-  createPerson(name,identifierNum,mail,pas){
+  createPerson(name,identifierNum,mail,pas,status){
     this.peopleList.push({
         name : name,
         identifierNum : identifierNum,
         mail : mail,
         pas : pas,
+        status: status,
         }).then(newPerson =>{
     this.navCtrl.push(HomePage);
     },error=>{console.log(error);});
@@ -109,4 +98,9 @@ prev(){
     this.nav.setRoot(LoginPage);
   }
   
+
+  getStatus(status){
+
+
+  }
 }

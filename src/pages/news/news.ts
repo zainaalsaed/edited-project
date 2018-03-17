@@ -6,6 +6,7 @@ import { ScanPage } from '../scan/scan';
 import { SearchLocationPage } from '../search-location/search-location';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
+import { RegscPage } from '../regsc/regsc';
 // import { StockListPage } from '../stock-list/stock-list';
 //import { NativeAudio } from '@ionic-native/native-audio';
 
@@ -39,9 +40,9 @@ export class NewsPage {
       this.navCtrl.setRoot(LoginPage);
     }
 
-    /*showScan(){
+    showComp(){
 
 
-      this.navCtrl.setRoot(ScanPage);
-    }*/
+      this.navCtrl.setRoot(RegscPage);
+    }
 }
