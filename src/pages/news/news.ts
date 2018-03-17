@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController} from 'ionic-angular';
+import { TripsPage } from '../trips/trips';
+import { LoginPage } from '../login/login';
+import { ScanPage } from '../scan/scan';
+import { SearchLocationPage } from '../search-location/search-location';
+import { HomePage } from '../home/home';
+import { RegisterPage } from '../register/register';
 // import { StockListPage } from '../stock-list/stock-list';
 //import { NativeAudio } from '@ionic-native/native-audio';
 
@@ -28,4 +34,14 @@ export class NewsPage {
     public alertCtrl: AlertController ) {
 
     }
+    showLogin(){
+
+      this.navCtrl.setRoot(LoginPage);
+    }
+
+    /*showScan(){
+
+
+      this.navCtrl.setRoot(ScanPage);
+    }*/
 }

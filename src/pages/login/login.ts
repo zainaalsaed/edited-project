@@ -5,20 +5,36 @@ import { Component ,ViewChild   } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { FirebaseError } from '@firebase/util';
-
-
+import { BarcodeScanner,BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { User } from '@firebase/auth-types';
+import { ScanPage } from "../scan/scan";
+import { NewsPage } from "../news/news";
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  navCtrl: any=this.nav;
 
-  
+ /* data={ };
+  encodemyData:string;
+encodedData:{};
+
+  option:BarcodeScannerOptions ;*/ 
+  //navCtrl: any=this.nav;
+
+ 
   @ViewChild('username') user;
 	@ViewChild('password') password;
-  constructor(private afAuth: AngularFireAuth,private alertCtrl: AlertController,private fire: AngularFireAuth,public nav: NavController, public forgotCtrl: AlertController, public menu: MenuController, public toastCtrl: ToastController) {
+  constructor(  
+    public barcodeScanner:BarcodeScanner,
+     private afAuth: AngularFireAuth,
+     private alertCtrl: AlertController,
+     public navCtrl: NavController,
+     private fire: AngularFireAuth,
+     /*public nav: NavController*/
+     public forgotCtrl: AlertController, 
+     public menu: MenuController, 
+     public toastCtrl: ToastController) {
     this.menu.swipeEnable(false);
   }
   ionViewDidLoad() {
@@ -32,9 +48,9 @@ export class LoginPage {
     }).present();
   }
   // go to register page
-  register() {
-    this.nav.setRoot(RegisterPage);
-  }
+  /*register() {
+    this.navCtrl.setRoot(RegisterPage);
+  }*/
 
   // login and go to home page
   regEm() {
@@ -43,7 +59,7 @@ export class LoginPage {
     .then( data => {
       console.log('got some data', this.fire.auth.currentUser);
       this.alert('Success! You\'re logged in');
-      this.navCtrl.push(HomePage);
+      this.navCtrl.setRoot(HomePage);
       // user is logged in
     })
     .catch( error => {
@@ -78,7 +94,7 @@ export class LoginPage {
           handler: data => {
             console.log('Send clicked');
             let toast = this.toastCtrl.create({
-              message: 'Email was sended successfully',
+              message: 'Email was sent successfully',
               duration: 3000,
               position: 'top',
               cssClass: 'dark-trans',
@@ -98,7 +114,21 @@ export class LoginPage {
   signInWithgoogle() {
     this.afAuth.auth .signInWithPopup(new firebase.auth.GoogleAuthProvider()) .then(res => console.log(res));
   }
-  registeruser() {
-    this.nav.setRoot(RegisterPage);
+  regUser() {
+    this.navCtrl.push(RegisterPage);
   }
+
+
+  sBr(){
+    this.navCtrl.push(ScanPage);
+
+  }
+
+
+  goBk(){
+
+    this.navCtrl.setRoot(NewsPage);
+this.navCtrl.popToRoot();
+  }
+
 }

@@ -11,6 +11,7 @@ import { LocalWeatherPage } from "../pages/local-weather/local-weather";
 
 import { StartPage } from "../pages/start/start";
 import { LoginPage } from "../pages/login/login";
+import { NewsPage } from "../pages/news/news";
 
 export interface MenuItem {
     title: string;
@@ -67,7 +68,7 @@ export class MyApp {
   }
 
   logout() {
-    this.nav.setRoot(LoginPage);
+    this.nav.setRoot(NewsPage);
   }
 
 }

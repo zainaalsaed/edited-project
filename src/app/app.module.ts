@@ -13,7 +13,7 @@ import {TripService} from "../services/trip-service";
 import {WeatherProvider} from "../services/weather";
 
 import {MyApp} from "./app.component";
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {SettingsPage} from "../pages/settings/settings";
 import {CheckoutTripPage} from "../pages/checkout-trip/checkout-trip";
 import {HomePage} from "../pages/home/home";
@@ -28,8 +28,11 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {IonicPageModule} from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+//import { FirebaseListObservable} from 'angularfire2/database-deprecated';
 import { NewsPage } from "../pages/news/news";
 import { MyProvider } from '../providers/my/my';
+import { ScanPage } from "../pages/scan/scan";
+import { RegscPage } from "../pages/regsc/regsc";
 const firebaseAuth = {
   apiKey: "AIzaSyDaMitUUxNTOo7uWpsRuhDtl4ox7cvR1FA",
   authDomain: "test-project-ca0ec.firebaseapp.com",
@@ -58,18 +61,20 @@ const firebaseAuth = {
     SearchLocationPage,
     TripDetailPage,
     TripsPage,
-    NewsPage
+    NewsPage,
+    ScanPage,
+    RegscPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
-      scrollPadding: false,
+      scrollPadding: true,
       scrollAssist: true,
       autoFocusAssist: false
     }),
     IonicStorageModule.forRoot({
-      name: '__ionic3_start_theme',
+      name: 'mot_app',
         driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
     AngularFireModule.initializeApp(firebaseAuth),
@@ -89,9 +94,12 @@ const firebaseAuth = {
     SearchLocationPage,
     TripDetailPage,
     TripsPage,
-    NewsPage
+    NewsPage,
+    ScanPage,
+    RegscPage
   ],
   providers: [
+    BarcodeScanner,
     StatusBar,
     SplashScreen,
     Keyboard,

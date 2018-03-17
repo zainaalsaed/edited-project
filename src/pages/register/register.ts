@@ -1,12 +1,15 @@
 import {LoginPage} from "../login/login";
 import { Component ,ViewChild  } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-
+import {IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 import {HomePage} from "../home/home";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseError } from '@firebase/util';
-
+import { AngularFireModule } from 'angularfire2';
 import * as firebase from 'firebase/app';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 //@IonicPage()
 @Component({
   selector: 'page-register',
@@ -14,12 +17,27 @@ import * as firebase from 'firebase/app';
 })
 export class RegisterPage {
 
+
   
+  @ViewChild('signupSlider') signupSlider: any;
+ 
+  slideOneForm: FormGroup;
+  slideTwoForm: FormGroup;
+
+  submitAttempt: boolean = false;
+  peopleList :  AngularFireList<any>;
   @ViewChild('username') user;
   @ViewChild('password') password;
   
-  constructor( public nav: NavController,private afAuth: AngularFireAuth, private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
-  
+  constructor(public formBuilder: FormBuilder, public db: AngularFireDatabase, public nav: NavController,private afAuth: AngularFireAuth, private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+   /* fire.auth.onAuthStateChanged(function(user){
+      if(!user){
+          navCtrl.setRoot(LoginPage)
+      }
+              });
+          
+          */
+          this.peopleList = db.list('/people')
   }
   
   alert(message: string) {
@@ -31,7 +49,27 @@ export class RegisterPage {
   }
 
 
-  registerUser() {
+ /* next(){
+    this.signupSlider.slideNext();
+}
+
+prev(){
+    this.signupSlider.slidePrev();
+}
+*/
+
+  createPerson(name,identifierNum,mail,pas){
+    this.peopleList.push({
+        name : name,
+        identifierNum : identifierNum,
+        mail : mail,
+        pas : pas,
+        }).then(newPerson =>{
+    this.navCtrl.push(HomePage);
+    },error=>{console.log(error);});
+}
+
+  newUser() {
     
     this.fire.auth.createUserWithEmailAndPassword(this.user.value , this.password.value)
     .then(data => {
