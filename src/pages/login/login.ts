@@ -119,11 +119,7 @@ encodedData:{};
   }
 
 
-<<<<<<< HEAD
   sBr(){
-=======
-  scanBr(){
->>>>>>> 70be5d627a8988682cf6393f2ecb4cd0f6cc2906
     this.navCtrl.push(ScanPage);
 
   }
