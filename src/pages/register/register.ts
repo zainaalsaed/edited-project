@@ -1,6 +1,6 @@
 import {LoginPage} from "../login/login";
 import { Component ,ViewChild  } from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams,AlertController, ToastController, } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 import {HomePage} from "../home/home";
@@ -32,7 +32,11 @@ export class RegisterPage {
 
 
   
-  constructor(public formBuilder: FormBuilder, public db: AngularFireDatabase, public nav: NavController,private afAuth: AngularFireAuth, private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public formBuilder: FormBuilder,
+    public scCtrl: AlertController,
+     public db: AngularFireDatabase,
+     public tstCtrl: ToastController,
+      public nav: NavController,private afAuth: AngularFireAuth, private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
    /* fire.auth.onAuthStateChanged(function(user){
       if(!user){
           navCtrl.setRoot(LoginPage)
@@ -102,5 +106,43 @@ export class RegisterPage {
   getStatus(status){
 
 
+  }
+
+  scBr() {
+    let scn = this.scCtrl.create({
+      title: 'Scan your Barcode',
+      message: "Scan your driving lisence Barcode to sign up.",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email',
+          type: 'email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Send',
+          handler: data => {
+            console.log('Send clicked');
+            let tst = this.tstCtrl.create({
+              message: 'Email was sent successfully',
+              duration: 3000,
+              position: 'top',
+              cssClass: 'dark-trans',
+              closeButtonText: 'OK',
+              showCloseButton: true
+            });
+            tst.present();
+          }
+        }
+      ]
+    });
+    scn.present();
   }
 }

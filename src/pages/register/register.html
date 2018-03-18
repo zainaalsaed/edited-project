@@ -22,33 +22,35 @@
    
 
    
-    <ion-list>
+   
 
-  <ion-item tappable>
-    <ion-label stacked>Your Name</ion-label>
+  <ion-item >
+      <ion-label floating> Your Name</ion-label>
     <ion-input type="text" [(ngModel)]="name"></ion-input>
   </ion-item>
-  <ion-item tappable>
+
+
+  <ion-item >
     <ion-label floating>ID Number</ion-label>
     <ion-input type="number" [(ngModel)]="identifierNum"></ion-input>
   </ion-item>
 
   
-  <ion-item tappable>
+  <ion-item >
     <ion-label floating>Email</ion-label>
     <ion-input type="email" #username [(ngModel)]="mail"></ion-input>
   </ion-item>
    
-   <ion-item tappable>
+   <ion-item >
      <ion-label floating>
       <ion-icon name="lock" item-start class="text-primary"></ion-icon>
     Password
   </ion-label>
-    <ion-input tappable type="password" #password [(ngModel)]="pas"></ion-input>
+    <ion-input  type="password" #password [(ngModel)]="pas"></ion-input>
   </ion-item>
         
+    
    
-</ion-list>
    
     <!-- Login form -->
     
@@ -91,7 +93,11 @@
         </ion-card>
    <div text-center margin-top>
        
-        
+      <button ion-button icon-start block color="dark" tappable (click)="scBr()" >
+          <ion-icon name="barcode"></ion-icon>
+          Scan your Driving lisence Barcode
+        </button>
+  
             <button ion-button block color="dark" tappable (click)="newUser(); createPerson(name,identifierNum,mail,pas,status)">
                  <ion-icon name="ios-add-circle"></ion-icon>
                   Sign Up
