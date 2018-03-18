@@ -108,7 +108,7 @@ export class RegisterPage {
 
   }
 
-  scBr() {
+  scnBr() {
     let scn = this.scCtrl.create({
       title: 'Scan your Barcode',
       message: "Scan your driving lisence Barcode to sign up.",
@@ -122,13 +122,13 @@ export class RegisterPage {
       buttons: [
         {
           text: 'Cancel',
-          handler: data => {
+          handler: dataz => {
             console.log('Cancel clicked');
           }
         },
         {
           text: 'Send',
-          handler: data => {
+          handler: dataz => {
             console.log('Send clicked');
             let tst = this.tstCtrl.create({
               message: 'Email was sent successfully',

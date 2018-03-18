@@ -7,6 +7,7 @@ import { SearchLocationPage } from '../search-location/search-location';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { RegscPage } from '../regsc/regsc';
+import { LocalWeatherPage } from '../local-weather/local-weather';
 // import { StockListPage } from '../stock-list/stock-list';
 //import { NativeAudio } from '@ionic-native/native-audio';
 
@@ -44,5 +45,10 @@ export class NewsPage {
 
 
       this.navCtrl.setRoot(RegscPage);
+    }
+
+    openRest(){
+      this.navCtrl.setRoot(LocalWeatherPage);
+
     }
 }
