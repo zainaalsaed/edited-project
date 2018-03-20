@@ -33,6 +33,8 @@ import { NewsPage } from "../pages/news/news";
 import { MyProvider } from '../providers/my/my';
 import { ScanPage } from "../pages/scan/scan";
 import { RegscPage } from "../pages/regsc/regsc";
+
+import { ScanRegisterPage } from "../pages/scan-register/scan-register";
 const firebaseAuth = {
   apiKey: "AIzaSyDaMitUUxNTOo7uWpsRuhDtl4ox7cvR1FA",
   authDomain: "test-project-ca0ec.firebaseapp.com",
@@ -63,7 +65,8 @@ const firebaseAuth = {
     TripsPage,
     NewsPage,
     ScanPage,
-    RegscPage
+    RegscPage,
+    ScanRegisterPage
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,8 @@ const firebaseAuth = {
     TripsPage,
     NewsPage,
     ScanPage,
-    RegscPage
+    RegscPage,
+    ScanRegisterPage
   ],
   providers: [
     BarcodeScanner,

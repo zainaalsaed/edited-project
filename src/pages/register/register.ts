@@ -1,6 +1,6 @@
 import {LoginPage} from "../login/login";
 import { Component ,ViewChild  } from '@angular/core';
-import {IonicPage, NavController, NavParams,AlertController, ToastController, } from 'ionic-angular';
+import {IonicPage, NavController, NavParams,AlertController, ToastController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 import {HomePage} from "../home/home";
@@ -9,14 +9,25 @@ import { FirebaseError } from '@firebase/util';
 import { AngularFireModule } from 'angularfire2';
 import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ScanPage } from "../scan/scan";
+import { ScanRegisterPage } from "../scan-register/scan-register";
+import { Output } from '@angular/core';
+import { BarcodeScanner,BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+
+
 
 //@IonicPage()
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html'
 })
 export class RegisterPage {
+  datay={ };
+  encodemyDatay:string;
+encodedDatay:{};
 
+  options:BarcodeScannerOptions ;
 
   
   @ViewChild('signupSlider') signupSlider: any;
@@ -32,7 +43,8 @@ export class RegisterPage {
 
 
   
-  constructor(public formBuilder: FormBuilder,
+  constructor(public barcodeScanner:BarcodeScanner,
+    public formBuilder: FormBuilder,
     public scCtrl: AlertController,
      public db: AngularFireDatabase,
      public tstCtrl: ToastController,
@@ -44,6 +56,7 @@ export class RegisterPage {
               });
           
           */
+        
           this.peopleList = db.list('/people')
   }
   
@@ -58,13 +71,14 @@ export class RegisterPage {
 
  
 
-  createPerson(name,identifierNum,mail,pas,status){
+  createPerson(name,identifierNum,mail,pas,status,drivl){
     this.peopleList.push({
         name : name,
         identifierNum : identifierNum,
         mail : mail,
         pas : pas,
         status: status,
+        drivl : this.datay
         }).then(newPerson =>{
     this.navCtrl.push(HomePage);
     },error=>{console.log(error);});
@@ -108,7 +122,15 @@ export class RegisterPage {
 
   }
 
-  scnBr() {
+ /* scnBr()
+  
+  {
+
+this.nav.push(ScanRegisterPage);
+
+  }*/
+  
+  /* {
     let scn = this.scCtrl.create({
       title: 'Scan your Barcode',
       message: "Scan your driving lisence Barcode to sign up.",
@@ -144,5 +166,33 @@ export class RegisterPage {
       ]
     });
     scn.present();
+  }*/
+
+  scany(){
+
+    this.options = { prompt: "Please scan your code"  }
+    this.barcodeScanner.scan(this.options).then((barcodeData) => {
+      // Success! Barcode data is here
+      console.log(barcodeData);
+      this.datay = barcodeData;
+
+
+     }, (err) => {
+         // An error occurred
+         console.log(err);
+     });
+
   }
+
+
+  encodeDatay(){
+this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE,this.encodemyDatay).then((res)=>{
+console.log(res)
+this.encodedDatay = res;
+}, (err) => {
+  // An error occurred
+  console.log(err);
+})
+  }
+
 }

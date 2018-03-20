@@ -17,16 +17,16 @@ import{RegisterPage} from "../register/register";
 })
 export class ScanPage {
 
-  data={ };
+  /*data={ };
   encodemyData:string;
 encodedData:{};
 
-  option:BarcodeScannerOptions ;
+  option:BarcodeScannerOptions ;*/
   constructor(public navCtrl: NavController,public barcodeScanner:BarcodeScanner) {
 
   }
 
-  scan(){
+  /*scan(){
 
     this.option = {
 
@@ -59,7 +59,8 @@ this.encodedData = res;
 
   goLog(){
     this.navCtrl.setRoot(LoginPage);
-  }
+  }*/
 
 
 }
+

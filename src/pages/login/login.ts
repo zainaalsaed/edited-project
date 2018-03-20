@@ -9,17 +9,18 @@ import { BarcodeScanner,BarcodeScannerOptions } from '@ionic-native/barcode-scan
 import { User } from '@firebase/auth-types';
 import { ScanPage } from "../scan/scan";
 import { NewsPage } from "../news/news";
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
 
- /* data={ };
+  data={ };
   encodemyData:string;
 encodedData:{};
 
-  option:BarcodeScannerOptions ;*/ 
+  option:BarcodeScannerOptions ;
   //navCtrl: any=this.nav;
 
  
@@ -130,6 +131,36 @@ encodedData:{};
 
     this.navCtrl.setRoot(NewsPage);
 this.navCtrl.popToRoot();
+  }
+
+  scan(){
+
+    this.option = {
+
+      prompt: "Please scan your code"
+    }
+    this.barcodeScanner.scan(this.option).then((barcodeData) => {
+      // Success! Barcode data is here
+      console.log(barcodeData);
+      this.data = barcodeData;
+this.navCtrl.push(HomePage);
+
+     }, (err) => {
+         // An error occurred
+         console.log(err);
+     });
+
+  }
+
+
+  encodeData(){
+this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE,this.encodemyData).then((res)=>{
+console.log(res)
+this.encodedData = res;
+}, (err) => {
+  // An error occurred
+  console.log(err);
+})
   }
 
 }

@@ -41,6 +41,8 @@
     <ion-input type="email" #username [(ngModel)]="mail"></ion-input>
   </ion-item>
    
+
+
    <ion-item >
      <ion-label floating>
       <ion-icon name="lock" item-start class="text-primary"></ion-icon>
@@ -50,8 +52,30 @@
   </ion-item>
         
     
+  <ion-item><h1>
+      
+        Driving lisence Barcode : {{datay.text}}
+      
+  </h1> 
+</ion-item>
+    <!--  <h1>cancelled :  {{datay.cancelled}}</h1>
+      <h1>format : {{datay.format}}</h1>
+       </h1>
+
+
+    </ion-item>
+
+    <ion-item>
+
+ <ion-input type="text" [(ngModel)]="encodemyDatay"></ion-input>
+ </ion-item>
+          <ion-item>
+            <button ion-button (click)="encodeDatay()">Scan</button>
+-->
+ 
+
    
-   
+
     <!-- Login form -->
     
 
@@ -91,14 +115,25 @@
       
           </ion-card-content>
         </ion-card>
+        
+
+
    <div text-center margin-top>
        
-      <button ion-button icon-start block color="dark" tappable (click)="scnBr()" >
+      <button ion-button icon-start block color="dark" tappable (click)="scany(); goLogy()" >
           <ion-icon name="barcode"></ion-icon>
           Scan your Driving lisence Barcode
         </button>
+        <!-- <button ion-button (click)="scany(); goLogy()">Scan</button> -->
   
-            <button ion-button block color="dark" tappable (click)="newUser(); createPerson(name,identifierNum,mail,pas,status)">
+
+
+
+   
+  
+  
+  
+            <button ion-button block color="dark" tappable (click)="newUser(); createPerson(name,identifierNum,mail,pas,status,datay.text)">
                  <ion-icon name="ios-add-circle"></ion-icon>
                   Sign Up
                  </button>
